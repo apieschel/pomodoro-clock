@@ -13,11 +13,34 @@
     <script src="/script.js" defer></script>
   </head>  
   <body>
-    <h1>Hi there!</h1>
-    
-    <p>
-      I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch</a>!
-    </p>
+    <div class="flex-container">
+
+	<div class="flex-horizontal">
+		<div>
+			<h2>Session Length</h2>
+			<input type="button" id="down" value="-">
+			<span id="session-timer">25</span>
+			<input type="button" id="up" value="+">
+		</div>
+		<div>
+			<h2>Break Length</h2>
+			<input type="button" id="breakdown" value="-">
+			<span id="break-timer">5</span>
+			<input type="button" id="breakup" value="+">
+		</div>
+	</div>
+
+	<div id="pause" class="flex-container clockface">
+		<div id="session-or-break">Session</div>
+		<!-- Displays the countdown timer -->
+		<div id="clock"></div>
+	</div>
+
+	<div>
+		<input type="button" id="start" value="Start">
+	</div>
+
+</div>
 
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
