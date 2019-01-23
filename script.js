@@ -79,7 +79,7 @@ let sessionTime = document.getElementById("session-length");
 			// If the count down is finished, write some text
 			if (distance < 0) {
 				clearInterval(x);
-				document.getElementById("time-left").innerHTML = "0:00";
+				document.getElementById("time-left").innerHTML = "00:00";
 
 				if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
@@ -139,7 +139,7 @@ let sessionTime = document.getElementById("session-length");
 			// If the count down is finished, write some text
 			if (distance < 0) {
 				clearInterval(x);
-				document.getElementById("time-left").innerHTML = "0:00";
+				document.getElementById("time-left").innerHTML = "00:00";
 
 				if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
@@ -204,7 +204,7 @@ let sessionTime = document.getElementById("session-length");
 			// If the count down is finished, write some text
 			if (distance < 0) {
 				clearInterval(x);
-				document.getElementById("time-left").innerHTML = "0:00";
+				document.getElementById("time-left").innerHTML = "00:00";
 
 				if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
@@ -315,7 +315,7 @@ let sessionTime = document.getElementById("session-length");
 		// If the count down is finished, clear the interval, then alert and switch between break / session
 		if (distance < 0) {
 			clearInterval(x);
-			document.getElementById("time-left").innerHTML = "0:00";
+			document.getElementById("time-left").innerHTML = "00:00";
 
 			if(isBreak) {
 				//alert("Break's over! Let's get back to work.");
