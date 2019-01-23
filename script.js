@@ -23,7 +23,7 @@ let sessionTime = document.getElementById("session-length");
 	document.getElementById("break-decrement").addEventListener("click", decrementBreak);
 
 	function countDown() {
-
+    
 		// Clear the "pause" event listener to avoid bugs by cloning the element
 		let old_element = document.getElementById("pause");
 		let new_element = old_element.cloneNode(true);
