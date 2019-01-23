@@ -3,6 +3,7 @@ let sessionTime = document.getElementById("session-length");
 	let clock = document.getElementById("time-left");
 	let start = document.getElementById("start_stop");
   let reset = document.getElementById("reset");
+  let beep = document.getElementById("beep");
 	let isBreak = false;
 	let paused = true;
 
@@ -82,9 +83,11 @@ let sessionTime = document.getElementById("session-length");
 
 				if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
+          beep.play();
 					isBreak = false;
 				} else {
 					//alert("Don't push yourself too hard! Time for a break.");
+          beep.play();
 					isBreak = true;
 				}
 				countDown();
@@ -140,9 +143,11 @@ let sessionTime = document.getElementById("session-length");
 
 				if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
+          beep.play();
 					isBreak = false;
 				} else {
 					//alert("Don't push yourself too hard! Time for a break.");
+          beep.play();
 					isBreak = true;
 				}
 				countDown();
@@ -203,9 +208,11 @@ let sessionTime = document.getElementById("session-length");
 
 				if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
+          beep.play();
 					isBreak = false;
 				} else {
 					//alert("Don't push yourself too hard! Time for a break.");
+          beep.play();
 					isBreak = true;
 				}
 				countDown();
@@ -317,10 +324,12 @@ let sessionTime = document.getElementById("session-length");
 			document.getElementById("time-left").innerHTML = "0:00";
 
 			if(isBreak) {
-				alert("Break's over! Let's get back to work.");
+				//alert("Break's over! Let's get back to work.");
+        beep.play();
 				isBreak = false;
 			} else {
-				alert("Don't push yourself too hard! Time for a break.");
+				//alert("Don't push yourself too hard! Time for a break.");
+        beep.play();
 				isBreak = true;
 			}
 			countDown();
