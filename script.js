@@ -229,7 +229,7 @@ let sessionTime = document.getElementById("session-length");
       console.log("test");
       paused = true;
       clearInterval(x);
-      document.getElementById("time-left").innerHTML = "25:00";
+      document.getElementById("time-left").innerHTML = "25";
 			document.getElementById("timer-label").innerText = "Session";
       sessionTime.innerHTML = "25";
       breakTime.innerHTML = "5";
@@ -242,7 +242,7 @@ let sessionTime = document.getElementById("session-length");
 			isBreak = false;
 			let val = sessionTime.innerText;
 			val = parseInt(val);
-			if(val < 59) { 
+			if(val < 60) { 
 				val = val + 1;
 			} else {
 				val = 1;
@@ -258,7 +258,7 @@ let sessionTime = document.getElementById("session-length");
 			isBreak = false;
 			let val = sessionTime.innerText;
 			val = parseInt(val);
-			if(val > 1) { 
+			if(val > 0) { 
 				val = val - 1;
 			} else {
 				val = 59;
@@ -273,7 +273,7 @@ let sessionTime = document.getElementById("session-length");
 		if(paused) {
 			let val = breakTime.innerText;
 			val = parseInt(val);
-			if(val < 59) { 
+			if(val < 60) { 
 				val = val + 1;
 			} else {
 				val = 1;
@@ -286,7 +286,7 @@ let sessionTime = document.getElementById("session-length");
 		if(paused) {
 			let val = breakTime.innerText;
 			val = parseInt(val);
-			if(val > 1) { 
+			if(val > 0) { 
 				val = val - 1;
 			} else {
 				val = 59;
