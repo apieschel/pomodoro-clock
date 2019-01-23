@@ -2,12 +2,14 @@ let sessionTime = document.getElementById("session-length");
 	let breakTime = document.getElementById("break-length");
 	let clock = document.getElementById("time-left");
 	let start = document.getElementById("start_stop");
+  let reset = document.getElementById("reset");
 	let isBreak = false;
 	let paused = true;
 
 	clock.innerText = sessionTime.innerText;
 
 	start.addEventListener("click", countDown);
+  reset.addEventListener("click", resetTime);
 	document.getElementById("session-increment").addEventListener("click", increment);
 	document.getElementById("session-decrement").addEventListener("click", decrement);
 	document.getElementById("break-increment").addEventListener("click", incrementBreak);
@@ -20,7 +22,7 @@ let sessionTime = document.getElementById("session-length");
 		var new_element = old_element.cloneNode(true);
 		old_element.parentNode.replaceChild(new_element, old_element);
 
-		start.style = "display:none";
+		//start.style = "display:none";
 		paused = false;
 
 		let sessionVal = parseInt(sessionTime.innerText);
@@ -146,6 +148,13 @@ let sessionTime = document.getElementById("session-length");
 		});
 
 	}
+
+  function resetTime() {
+			clock.innerText = "25:00";
+			document.getElementById("timer-label").innerText = "Session";
+      sessionTime.innerHTML = "25";
+      breakTime.innerHTML = "5";
+  }
 
 	function increment() {
 		if(paused) {
