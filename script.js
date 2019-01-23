@@ -244,8 +244,6 @@ let sessionTime = document.getElementById("session-length");
 			val = parseInt(val);
 			if(val < 60) { 
 				val = val + 1;
-			} else {
-				val = 1;
 			}
 			sessionTime.innerHTML = val;
 			document.getElementById("time-left").innerText = val;
@@ -258,11 +256,9 @@ let sessionTime = document.getElementById("session-length");
 			isBreak = false;
 			let val = sessionTime.innerText;
 			val = parseInt(val);
-			if(val > 0) { 
+			if(val > 1) { 
 				val = val - 1;
-			} else {
-				val = 59;
-			}
+			} 
 			sessionTime.innerHTML = val;
 			document.getElementById("time-left").innerText = val;
 			document.getElementById("timer-label").innerText = "Session";
@@ -275,9 +271,7 @@ let sessionTime = document.getElementById("session-length");
 			val = parseInt(val);
 			if(val < 60) { 
 				val = val + 1;
-			} else {
-				val = 1;
-			}
+			} 
 			breakTime.innerHTML = val;
 		}
 	} 
@@ -286,11 +280,9 @@ let sessionTime = document.getElementById("session-length");
 		if(paused) {
 			let val = breakTime.innerText;
 			val = parseInt(val);
-			if(val > 0) { 
+			if(val > 1) { 
 				val = val - 1;
-			} else {
-				val = 59;
-			}
+			} 
 			breakTime.innerHTML = val;
 		}
 	}
