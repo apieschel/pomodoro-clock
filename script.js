@@ -1,5 +1,5 @@
-let sessionTime = document.getElementById("session-timer");
-	let breakTime = document.getElementById("break-timer");
+let sessionTime = document.getElementById("session-label");
+	let breakTime = document.getElementById("break-label");
 	let clock = document.getElementById("clock");
 	let start = document.getElementById("start");
 	let isBreak = false;
@@ -8,10 +8,10 @@ let sessionTime = document.getElementById("session-timer");
 	clock.innerText = sessionTime.innerText;
 
 	start.addEventListener("click", countDown);
-	document.getElementById("up").addEventListener("click", increment);
-	document.getElementById("down").addEventListener("click", decrement);
-	document.getElementById("breakup").addEventListener("click", incrementBreak);
-	document.getElementById("breakdown").addEventListener("click", decrementBreak);
+	document.getElementById("session-increment").addEventListener("click", increment);
+	document.getElementById("session-decrement").addEventListener("click", decrement);
+	document.getElementById("break-increment").addEventListener("click", incrementBreak);
+	document.getElementById("break-decrement").addEventListener("click", decrementBreak);
 
 	function countDown() {
 
