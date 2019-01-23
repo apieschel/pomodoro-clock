@@ -7,8 +7,15 @@ let sessionTime = document.getElementById("session-length");
 	let paused = true;
 
 	clock.innerText = sessionTime.innerText;
+  
+  if(paused === true) {
+	  start.addEventListener("click", countDown);
+  } else {
+    start.addEventListener("click", function() {
+      paused = true;
+    });
+  }
 
-	start.addEventListener("click", countDown);
   reset.addEventListener("click", resetTime);
 	document.getElementById("session-increment").addEventListener("click", increment);
 	document.getElementById("session-decrement").addEventListener("click", decrement);
@@ -18,11 +25,16 @@ let sessionTime = document.getElementById("session-length");
 	function countDown() {
 
 		// Clear the "pause" event listener to avoid bugs by cloning the element
-		var old_element = document.getElementById("pause");
-		var new_element = old_element.cloneNode(true);
+		let old_element = document.getElementById("pause");
+		let new_element = old_element.cloneNode(true);
+    let old_start = document.getElementById("start_stop");
+		let new_start = old_start.cloneNode(true);
+    let old_reset = document.getElementById("reset");
+		let new_reset = old_reset.cloneNode(true);
 		old_element.parentNode.replaceChild(new_element, old_element);
+    old_start.parentNode.replaceChild(new_start, old_start);
+    old_reset.parentNode.replaceChild(new_reset, old_reset);
 
-		//start.style = "display:none";
 		paused = false;
 
 		let sessionVal = parseInt(sessionTime.innerText);
@@ -154,6 +166,7 @@ let sessionTime = document.getElementById("session-length");
 			document.getElementById("timer-label").innerText = "Session";
       sessionTime.innerHTML = "25";
       breakTime.innerHTML = "5";
+      paused = true;
   }
 
 	function increment() {
