@@ -1,7 +1,7 @@
-let sessionTime = document.getElementById("session-label");
-	let breakTime = document.getElementById("break-label");
-	let clock = document.getElementById("clock");
-	let start = document.getElementById("start");
+let sessionTime = document.getElementById("session-length");
+	let breakTime = document.getElementById("break-length");
+	let clock = document.getElementById("time-left");
+	let start = document.getElementById("start_stop");
 	let isBreak = false;
 	let paused = true;
 
@@ -29,10 +29,10 @@ let sessionTime = document.getElementById("session-label");
 
 		if(isBreak) {
 			difference = breakVal;
-			document.getElementById("session-or-break").innerText = "Break";
+			document.getElementById("timer-label").innerText = "Break";
 		} else {
 			difference = sessionVal;
-			document.getElementById("session-or-break").innerText = "Session";
+			document.getElementById("timer-label").innerText = "Session";
 		}
 
 		// Set the date we're counting down to
@@ -61,14 +61,14 @@ let sessionTime = document.getElementById("session-label");
 				seconds = "0" + seconds.toString();
 			}
 
-			// Display the result in the element with id="clock"
-			document.getElementById("clock").innerHTML = minutes + ":" + seconds;
+			// Display the result in the element with id="time-left"
+			document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
 			document.title = "Pomodoro: " + minutes + ":" + seconds;
 
 			// If the count down is finished, write some text
 			if (distance < 0) {
 				clearInterval(x);
-				document.getElementById("clock").innerHTML = "0:00";
+				document.getElementById("time-left").innerHTML = "0:00";
 
 				if(isBreak) {
 					alert("Break's over! Let's get back to work.");
@@ -85,7 +85,7 @@ let sessionTime = document.getElementById("session-label");
 		document.getElementById("pause").addEventListener("click", function() {
 
 			if(paused){ 
-				let time = document.getElementById("clock").innerText; 
+				let time = document.getElementById("time-left").innerText; 
 
 				if(time.length > 2) {
 					let seconds = parseInt(time.slice(-2));
@@ -119,14 +119,14 @@ let sessionTime = document.getElementById("session-label");
 				seconds = "0" + seconds.toString();
 			}
 
-			// Display the result in the element with id="clock"
-			document.getElementById("clock").innerHTML = minutes + ":" + seconds;
+			// Display the result in the element with id="time-left"
+			document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
 			document.title = "Pomodoro: " + minutes + ":" + seconds;
 
 			// If the count down is finished, write some text
 			if (distance < 0) {
 				clearInterval(x);
-				document.getElementById("clock").innerHTML = "0:00";
+				document.getElementById("time-left").innerHTML = "0:00";
 
 				if(isBreak) {
 					alert("Break's over! Let's get back to work.");
@@ -158,8 +158,8 @@ let sessionTime = document.getElementById("session-label");
 				val = 1;
 			}
 			sessionTime.innerHTML = val;
-			document.getElementById("clock").innerText = val;
-			document.getElementById("session-or-break").innerText = "Session";
+			document.getElementById("time-left").innerText = val;
+			document.getElementById("timer-label").innerText = "Session";
 		}
 	} 
 
@@ -174,8 +174,8 @@ let sessionTime = document.getElementById("session-label");
 				val = 59;
 			}
 			sessionTime.innerHTML = val;
-			document.getElementById("clock").innerText = val;
-			document.getElementById("session-or-break").innerText = "Session";
+			document.getElementById("time-left").innerText = val;
+			document.getElementById("timer-label").innerText = "Session";
 		}
 	}
 
@@ -225,13 +225,13 @@ let sessionTime = document.getElementById("session-label");
 		}
 
 		// Display the result
-		document.getElementById("clock").innerHTML = minutes + ":" + seconds;
+		document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
 		document.title = "Pomodoro: " + minutes + ":" + seconds;
 
 		// If the count down is finished, clear the interval, then alert and switch between break / session
 		if (distance < 0) {
 			clearInterval(x);
-			document.getElementById("clock").innerHTML = "0:00";
+			document.getElementById("time-left").innerHTML = "0:00";
 
 			if(isBreak) {
 				alert("Break's over! Let's get back to work.");

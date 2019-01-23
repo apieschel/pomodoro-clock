@@ -17,27 +17,29 @@
 
 	<div class="flex-horizontal">
 		<div>
-			<h2>Session Length</h2>
+			<h2 id="session-label">Session Length</h2>
 			<input type="button" id="session-decrement" value="-">
-			<span id="session-label">25</span>
+			<span id="session-length">25</span>
 			<input type="button" id="session-increment" value="+">
 		</div>
 		<div>
-			<h2>Break Length</h2>
+			<h2 id="break-label">Break Length</h2>
 			<input type="button" id="break-decrement" value="-">
-			<span id="break-label">5</span>
+			<span id="break-length">5</span>
 			<input type="button" id="break-increment" value="+">
 		</div>
 	</div>
 
 	<div id="pause" class="flex-container clockface">
-		<div id="session-or-break">Session</div>
+		<div id="timer-label">Session</div>
 		<!-- Displays the countdown timer -->
-		<div id="clock"></div>
+		<div id="time-left"></div>
 	</div>
 
 	<div>
-		<input type="button" id="start" value="Start">
+		<input type="button" id="start_stop" value="Start">
+    
+		<input type="button" id="start_stop" value="Start">
 	</div>
 
 </div>
