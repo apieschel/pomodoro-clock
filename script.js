@@ -244,7 +244,7 @@ let sessionTime = document.getElementById("session-length");
 			document.title = "Pomodoro: " + minutes + ":" + seconds;
 
 			// If the count down is finished, write some text
-      //console.log(distance);
+      console.log(distance);
       console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText)
           
       if(distance < 500) {
@@ -262,13 +262,12 @@ let sessionTime = document.getElementById("session-length");
 			    document.getElementById("timer-label").innerText = "Break";
 				}
 				
-        console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText);         
-			}
-      
-      if(distance < -500) {
+        console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText);    
         clearInterval(x);
 				countDown();
-      }
+			}
+  
+      
 					
 				}, 1000); 
 			} else { 
