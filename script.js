@@ -234,8 +234,12 @@ let sessionTime = document.getElementById("session-length");
 			document.title = "Pomodoro: " + minutes + ":" + seconds;
 
 			// If the count down is finished, write some text
+      console.log(distance);
 			if (distance < 0) {
+        console.log(distance);
 				clearInterval(x);
+        document.getElementById("reset").setAttribute("disabled", "true");
+        document.getElementById("start_stop").setAttribute("disabled", "true");
 				document.getElementById("time-left").innerHTML = "00:00";
 
 				if(isBreak) {
