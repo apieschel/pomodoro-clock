@@ -259,18 +259,17 @@ let sessionTime = document.getElementById("session-length");
 			} 
 		});
     
-    reset.addEventListener("click", function() {
+    document.getElementById("reset").addEventListener("click", function() {
       console.log("reset");
       paused = true;
       isBreak = false;
-      clearInterval(x);
-      document.getElementById("time-left").innerHTML = "00:00";
       beep.pause();
       beep.currentTime = 0;
 			document.getElementById("timer-label").innerText = "Session";
       sessionTime.innerHTML = "25";
       breakTime.innerHTML = "5";
       document.getElementById("time-left").innerHTML = "25:00";
+      clearInterval(x);
     });
 
 	}
