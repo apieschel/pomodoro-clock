@@ -189,7 +189,11 @@ let sessionTime = document.getElementById("session-length");
 				let time = document.getElementById("time-left").innerText; 
 
 				if(time.length > 2) {
-					let seconds = parseInt(time.slice(-2)) - 50;
+          let offset = 0;
+         
+            offset = 61;
+          
+					let seconds = parseInt(time.slice(-2)) - offset;
 					let minutes = parseInt(time.substr(0, time.indexOf(':')));
 					countDownDate = new Date().getTime() + minutes*60000 + seconds*1000;
 				} else {
