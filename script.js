@@ -187,7 +187,7 @@ let sessionTime = document.getElementById("session-length");
     document.getElementById("start_stop").addEventListener("click", function() {
       count = count + 1;
       console.log("start_stop");
-      console.log(count);
+      
 			if(paused){ 
 				let time = document.getElementById("time-left").innerText; 
 
@@ -245,12 +245,13 @@ let sessionTime = document.getElementById("session-length");
 
 			// If the count down is finished, write some text
       //console.log(distance);
+      console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText)
           
-      if(distance < 0) {
+      if(distance < -500) {
 				document.getElementById("time-left").innerHTML = "00:00";
       }
           
-			if (distance < -1000) {
+			if (distance < 0) {
         
         if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
@@ -264,6 +265,7 @@ let sessionTime = document.getElementById("session-length");
 			    document.getElementById("timer-label").innerText = "Break";
 				}
 				
+        console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText); 
         clearInterval(x);
 				countDown();
 			}
