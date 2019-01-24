@@ -40,10 +40,8 @@ let sessionTime = document.getElementById("session-length");
 
 		if(isBreak) {
 			difference = breakVal;
-			document.getElementById("timer-label").innerText = "Break";
 		} else {
 			difference = sessionVal;
-			document.getElementById("timer-label").innerText = "Session";
 		}
 
 		// Set the date we're counting down to
@@ -88,11 +86,13 @@ let sessionTime = document.getElementById("session-length");
 				if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
           beep.play();
-					isBreak = false;
+					isBreak = false;      
+		    	document.getElementById("timer-label").innerText = "Session";
 				} else {
 					//alert("Don't push yourself too hard! Time for a break.");
           beep.play();
 					isBreak = true;
+			    document.getElementById("timer-label").innerText = "Break";
 				}
 				countDown();
 			}
@@ -153,10 +153,12 @@ let sessionTime = document.getElementById("session-length");
 					//alert("Break's over! Let's get back to work.");
           beep.play();
 					isBreak = false;
+			    document.getElementById("timer-label").innerText = "Session";
 				} else {
 					//alert("Don't push yourself too hard! Time for a break.");
           beep.play();
 					isBreak = true;
+			    document.getElementById("timer-label").innerText = "Break";
 				}
 				countDown();
 			}
@@ -221,11 +223,13 @@ let sessionTime = document.getElementById("session-length");
 				if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
           beep.play();
-					isBreak = false;
+					isBreak = false;      
+			    document.getElementById("timer-label").innerText = "Session";
 				} else {
 					//alert("Don't push yourself too hard! Time for a break.");
           beep.play();
 					isBreak = true;
+			    document.getElementById("timer-label").innerText = "Break";
 				}
 				countDown();
 			}
@@ -246,7 +250,7 @@ let sessionTime = document.getElementById("session-length");
 			document.getElementById("timer-label").innerText = "Session";
       sessionTime.innerHTML = "25";
       breakTime.innerHTML = "5";
-      document.getElementById("time-left").innerHTML = "25";
+      document.getElementById("time-left").innerHTML = "25:00";
     });
 
 	}
@@ -255,12 +259,20 @@ let sessionTime = document.getElementById("session-length");
 		if(paused) {
 			isBreak = false;
 			let val = sessionTime.innerText;
+      let sessVal;
 			val = parseInt(val);
 			if(val < 60) { 
 				val = val + 1;
 			}
+      
+      if(val < 10) {
+        sessVal = "0" + val.toString();
+      } else {
+        sessVal = val.toString();
+      }
+      
 			sessionTime.innerHTML = val;
-			document.getElementById("time-left").innerText = val.toString() + ":00";
+			document.getElementById("time-left").innerText = sessVal + ":00";
 			document.getElementById("timer-label").innerText = "Session";
 		}
 	} 
@@ -269,12 +281,18 @@ let sessionTime = document.getElementById("session-length");
 		if(paused) {
 			isBreak = false;
 			let val = sessionTime.innerText;
+      let sessVal;
 			val = parseInt(val);
 			if(val > 1) { 
 				val = val - 1;
 			} 
+       if(val < 10) {
+        sessVal = "0" + val.toString();
+      } else {
+        sessVal = val.toString();
+      }
 			sessionTime.innerHTML = val;
-			document.getElementById("time-left").innerText = val.toString() + ":00";
+			document.getElementById("time-left").innerText = sessVal + ":00";
 			document.getElementById("timer-label").innerText = "Session";
 		}
 	}
@@ -337,10 +355,12 @@ let sessionTime = document.getElementById("session-length");
 				//alert("Break's over! Let's get back to work.");
         beep.play();
 				isBreak = false;
+			  document.getElementById("timer-label").innerText = "Session";
 			} else {
 				//alert("Don't push yourself too hard! Time for a break.");
         beep.play();
 				isBreak = true;
+			  document.getElementById("timer-label").innerText = "Break";
 			}
 			countDown();
 		}
