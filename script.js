@@ -65,22 +65,7 @@ function countDown() {
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
-    if(seconds === 60) {
-      seconds = 0;
-      minutes = minutes + 1;
-    }
-
-    if(seconds < 10) {
-      seconds = "0" + seconds.toString();
-    }
-
-    if(minutes < 10) {
-      minutes = "0" + minutes.toString();
-    }
-
-    // Display the result in the element with id="time-left"
-    document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
-    document.title = "Pomodoro: " + minutes + ":" + seconds;
+    tick();
     
     // Set to 500 to preempt the testing suite, which hacks the setInterval function to make it run every 30ms, but the clock is still only updating every 1000ms. 
     if(distance < 500) {
@@ -344,4 +329,34 @@ function decrementBreak() {
     } 
     breakTime.innerHTML = val;
   }
+}
+
+function tick(countDownDate) {
+  console.log(isBreak);	
+  // Get todays date and time
+  let now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  let distance = countDownDate - now;
+  //console.log(1500000 - distance);
+
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.round((distance % (1000 * 60)) / 1000);
+
+  if(seconds === 60) {
+    seconds = 0;
+    minutes = minutes + 1;
+  }
+
+  if(seconds < 10) {
+    seconds = "0" + seconds.toString();
+  }
+
+  if(minutes < 10) {
+    minutes = "0" + minutes.toString();
+  }
+
+  // Display the result in the element with id="time-left"
+  document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
+  document.title = "Pomodoro: " + minutes + ":" + seconds;   
 }
