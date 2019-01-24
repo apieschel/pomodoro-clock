@@ -34,6 +34,8 @@ let sessionTime = document.getElementById("session-length");
 		old_element.parentNode.replaceChild(new_element, old_element);
     old_start.parentNode.replaceChild(new_start, old_start);
     old_reset.parentNode.replaceChild(new_reset, old_reset);
+    
+    let count = 0;
 
 		paused = false;
 
@@ -184,14 +186,16 @@ let sessionTime = document.getElementById("session-length");
 		});
     
     document.getElementById("start_stop").addEventListener("click", function() {
+      count = count + 1;
       console.log("start_stop");
+      console.log(count);
 			if(paused){ 
 				let time = document.getElementById("time-left").innerText; 
 
 				if(time.length > 2) {
           let offset = 0;
           
-          if(document.getElementById("timer-label").innerText === "Session") {         
+          if(count === 8) {         
             offset = 60;
           }
           
