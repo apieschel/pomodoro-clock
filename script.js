@@ -72,11 +72,26 @@ function countDown() {
   document.getElementById("pause").addEventListener("click", function() {
     if(paused){ 
       let time = document.getElementById("time-left").innerText; 
-      unPause(countDownDate, time);
+
+      if(time.length > 2) {
+        let seconds = parseInt(time.slice(-2));
+        let minutes = parseInt(time.substr(0, time.indexOf(':')));
+        countDownDate = new Date().getTime() + minutes*60000 + seconds*1000;
+      } else {
+        let minutes = parseInt(time);
+        countDownDate = new Date().getTime() + minutes*60000;
+      }
+      paused=false; 
       
       x = setInterval(function () {
+        console.log(isBreak);				
+        // Get todays date and time
         let now = new Date().getTime();
+
+        // Find the distance between now and the count down date
         let distance = countDownDate - now;
+        //console.log(1500000 - distance);
+
         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
@@ -96,15 +111,36 @@ function countDown() {
   });
 
   document.getElementById("start_stop").addEventListener("click", function() {
+    count = count + 1;
+    console.log("start_stop");
+
     if(paused){ 
-      unPause(countDownDate);     
+      let time = document.getElementById("time-left").innerText; 
+
+      if(time.length > 2) {
+        let seconds = parseInt(time.slice(-2));
+        let minutes = parseInt(time.substr(0, time.indexOf(':')));
+        countDownDate = new Date().getTime() + minutes*60000 + seconds*1000;
+      } else {
+        let minutes = parseInt(time);
+        countDownDate = new Date().getTime() + minutes*60000;
+      }
+
+      paused=false; 
       x = setInterval(function () {	
+
+        // Get todays date and time
         let now = new Date().getTime();
+        // Find the distance between now and the count down date
         let distance = countDownDate - now;
         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
         formatTime(countDownDate, minutes, seconds);
+
+        // If the count down is finished, write some text
+        console.log(distance);
+        console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText)
 
         if(distance < 500) {
           switchSession();
@@ -120,19 +156,10 @@ function countDown() {
   });
 
   document.getElementById("reset").addEventListener("click", function() {
-    console.log("reset");
-    paused = true;
-    isBreak = false;
-    beep.pause();
-    beep.currentTime = 0;
-    document.getElementById("timer-label").innerText = "Session";
-    sessionTime.innerHTML = "25";
-    breakTime.innerHTML = "5";
-    document.getElementById("time-left").innerHTML = "25:00";
+    resetTimer();
     clearInterval(x);
   });
-
-}
+} // end of countDown() function
 
 function increment() {
   if(paused) {
@@ -234,14 +261,13 @@ function switchSession() {
   }
 }
 
-function unPause(countDownDate,) {
-  if(time.length > 2) {
-        let seconds = parseInt(time.slice(-2));
-        let minutes = parseInt(time.substr(0, time.indexOf(':')));
-        countDownDate = new Date().getTime() + minutes*60000 + seconds*1000;
-      } else {
-        let minutes = parseInt(time);
-        countDownDate = new Date().getTime() + minutes*60000;
-      }
-      paused=false; 
+function resetTimer() {
+    paused = true;
+    isBreak = false;
+    beep.pause();
+    beep.currentTime = 0;
+    document.getElementById("timer-label").innerText = "Session";
+    sessionTime.innerHTML = "25";
+    breakTime.innerHTML = "5";
+    document.getElementById("time-left").innerHTML = "25:00";
 }
