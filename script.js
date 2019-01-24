@@ -105,7 +105,7 @@ let sessionTime = document.getElementById("session-length");
 				countDown();
 			}
 			
-		}, 30);
+		}, 1000);
 
 		document.getElementById("pause").addEventListener("click", function() {
       console.log("pause");
@@ -176,7 +176,7 @@ let sessionTime = document.getElementById("session-length");
 				countDown();
 			}
 					
-				}, 30); 
+				}, 1000); 
 			} else { 
 				paused=true; 
 				clearInterval(x);
@@ -189,7 +189,7 @@ let sessionTime = document.getElementById("session-length");
 				let time = document.getElementById("time-left").innerText; 
 
 				if(time.length > 2) {
-					let seconds = parseInt(time.slice(-2));
+					let seconds = parseInt(time.slice(-2)) - 50;
 					let minutes = parseInt(time.substr(0, time.indexOf(':')));
 					countDownDate = new Date().getTime() + minutes*60000 + seconds*1000;
 				} else {
