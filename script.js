@@ -6,6 +6,7 @@ let sessionTime = document.getElementById("session-length");
   let beep = document.getElementById("beep");
 	let isBreak = false;
 	let paused = true;
+  let count = 0;
 
 	clock.innerText = sessionTime.innerText + ":00";
   
@@ -34,8 +35,6 @@ let sessionTime = document.getElementById("session-length");
 		old_element.parentNode.replaceChild(new_element, old_element);
     old_start.parentNode.replaceChild(new_start, old_start);
     old_reset.parentNode.replaceChild(new_reset, old_reset);
-    
-    let count = 0;
 
 		paused = false;
 
@@ -195,7 +194,7 @@ let sessionTime = document.getElementById("session-length");
 				if(time.length > 2) {
           let offset = 0;
           
-          if(count === 8) {         
+          if(count === 8 || count === 9) {         
             offset = 60;
           }
           
