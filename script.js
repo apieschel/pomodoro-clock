@@ -81,7 +81,8 @@ function countDown() {
     // Display the result in the element with id="time-left"
     document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
     document.title = "Pomodoro: " + minutes + ":" + seconds;
-
+    
+    // Set to 500 to preempt the testing suite, which hacks the setInterval function to make it run every 30ms, but the clock is still only updating every 1000ms. 
     if(distance < 500) {
       document.getElementById("time-left").innerHTML = "00:00";
       beep.currentTime = 0;
