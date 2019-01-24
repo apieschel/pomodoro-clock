@@ -24,13 +24,16 @@ let sessionTime = document.getElementById("session-length");
 
 	function countDown() {
     
-		// Clear the "pause" event listener to avoid bugs by cloning the element
+		// Clear the event listeners by cloning elements to avoid bugs
 		let old_element = document.getElementById("pause");
 		let new_element = old_element.cloneNode(true);
     let old_start = document.getElementById("start_stop");
 		let new_start = old_start.cloneNode(true);
+    let old_reset = document.getElementById("reset");
+		let new_reset = old_reset.cloneNode(true);
 		old_element.parentNode.replaceChild(new_element, old_element);
     old_start.parentNode.replaceChild(new_start, old_start);
+    old_reset.parentNode.replaceChild(new_reset, old_reset);
 
 		paused = false;
 
@@ -105,7 +108,7 @@ let sessionTime = document.getElementById("session-length");
 		}, 1000);
 
 		document.getElementById("pause").addEventListener("click", function() {
-
+      console.log("pause");
 			if(paused){ 
 				let time = document.getElementById("time-left").innerText; 
 
@@ -181,7 +184,7 @@ let sessionTime = document.getElementById("session-length");
 		});
     
     document.getElementById("start_stop").addEventListener("click", function() {
-      
+      console.log("start_stop");
 			if(paused){ 
 				let time = document.getElementById("time-left").innerText; 
 
@@ -257,6 +260,7 @@ let sessionTime = document.getElementById("session-length");
 		});
     
     reset.addEventListener("click", function() {
+      console.log("reset");
       paused = true;
       isBreak = false;
       clearInterval(x);
