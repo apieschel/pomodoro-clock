@@ -105,7 +105,7 @@ let sessionTime = document.getElementById("session-length");
 				countDown();
 			}
 			
-		}, 1000);
+		}, 30);
 
 		document.getElementById("pause").addEventListener("click", function() {
       console.log("pause");
@@ -176,7 +176,7 @@ let sessionTime = document.getElementById("session-length");
 				countDown();
 			}
 					
-				}, 1000); 
+				}, 30); 
 			} else { 
 				paused=true; 
 				clearInterval(x);
@@ -199,7 +199,7 @@ let sessionTime = document.getElementById("session-length");
 
 				paused=false; 
 				x = setInterval(function () {
-				console.log(isBreak);		
+				//console.log(isBreak);		
 						
 			// Get todays date and time
 			let now = new Date().getTime();
@@ -234,12 +234,11 @@ let sessionTime = document.getElementById("session-length");
 			document.title = "Pomodoro: " + minutes + ":" + seconds;
 
 			// If the count down is finished, write some text
-      console.log(distance);
+      //console.log(distance);
+          
 			if (distance < 0) {
         console.log(distance);
 				clearInterval(x);
-        document.getElementById("reset").setAttribute("disabled", "true");
-        document.getElementById("start_stop").setAttribute("disabled", "true");
 				document.getElementById("time-left").innerHTML = "00:00";
 
 				if(isBreak) {
