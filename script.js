@@ -7,7 +7,7 @@ let sessionTime = document.getElementById("session-length");
 	let isBreak = false;
 	let paused = true;
 
-	clock.innerText = sessionTime.innerText;
+	clock.innerText = sessionTime.innerText + ":00";
   
   if(paused === true) {
 	  start.addEventListener("click", countDown);
@@ -71,6 +71,10 @@ let sessionTime = document.getElementById("session-length");
 			if(seconds < 10) {
 				seconds = "0" + seconds.toString();
 			}
+      
+      if(minutes < 10) {
+				minutes = "0" + minutes.toString();
+			}
 
 			// Display the result in the element with id="time-left"
 			document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
@@ -130,6 +134,10 @@ let sessionTime = document.getElementById("session-length");
 
 			if(seconds < 10) {
 				seconds = "0" + seconds.toString();
+			}
+          
+      if(minutes < 10) {
+				minutes = "0" + minutes.toString();
 			}
 
 			// Display the result in the element with id="time-left"
@@ -196,6 +204,10 @@ let sessionTime = document.getElementById("session-length");
 			if(seconds < 10) {
 				seconds = "0" + seconds.toString();
 			}
+          
+      if(minutes < 10) {
+				minutes = "0" + minutes.toString();
+			}
 
 			// Display the result in the element with id="time-left"
 			document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
@@ -248,7 +260,7 @@ let sessionTime = document.getElementById("session-length");
 				val = val + 1;
 			}
 			sessionTime.innerHTML = val;
-			document.getElementById("time-left").innerText = val;
+			document.getElementById("time-left").innerText = val.toString() + ":00";
 			document.getElementById("timer-label").innerText = "Session";
 		}
 	} 
@@ -262,7 +274,7 @@ let sessionTime = document.getElementById("session-length");
 				val = val - 1;
 			} 
 			sessionTime.innerHTML = val;
-			document.getElementById("time-left").innerText = val;
+			document.getElementById("time-left").innerText = val.toString() + ":00";
 			document.getElementById("timer-label").innerText = "Session";
 		}
 	}
@@ -306,6 +318,10 @@ let sessionTime = document.getElementById("session-length");
 
 		if(seconds < 10) {
 			seconds = "0" + seconds.toString();
+		}
+    
+    if(minutes < 10) {
+			minutes = "0" + minutes.toString();
 		}
 
 		// Display the result
