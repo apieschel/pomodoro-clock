@@ -50,7 +50,7 @@ let sessionTime = document.getElementById("session-length");
 		// Update the count down every 1 second
 		let x = setInterval(function () {
 			
-				
+			console.log(isBreak);	
 			// Get todays date and time
 			let now = new Date().getTime();
 
@@ -121,7 +121,7 @@ let sessionTime = document.getElementById("session-length");
 				paused=false; 
 				x = setInterval(function () {
 					
-						
+			console.log(isBreak);				
 			// Get todays date and time
 			let now = new Date().getTime();
 
@@ -181,7 +181,7 @@ let sessionTime = document.getElementById("session-length");
 		});
     
     document.getElementById("start_stop").addEventListener("click", function() {
-      console.log(isBreak);
+      
 			if(paused){ 
 				let time = document.getElementById("time-left").innerText; 
 
@@ -196,7 +196,7 @@ let sessionTime = document.getElementById("session-length");
 
 				paused=false; 
 				x = setInterval(function () {
-					
+				console.log(isBreak);		
 						
 			// Get todays date and time
 			let now = new Date().getTime();
