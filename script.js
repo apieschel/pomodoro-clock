@@ -195,7 +195,7 @@ let sessionTime = document.getElementById("session-length");
           let offset = 0;
           
           if(count === 8 || count === 9 || count === 10) {         
-            offset = 60;
+            //offset = 60;
           }
           
           
@@ -246,10 +246,11 @@ let sessionTime = document.getElementById("session-length");
 			// If the count down is finished, write some text
       //console.log(distance);
           
-			if (distance <= 0) {
-        
-        console.log(distance);
+      if(distance < 0) {
 				document.getElementById("time-left").innerHTML = "00:00";
+      }
+          
+			if (distance < -1000) {
         
         if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
