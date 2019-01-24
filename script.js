@@ -194,9 +194,10 @@ let sessionTime = document.getElementById("session-length");
 				if(time.length > 2) {
           let offset = 0;
           
-          if(count === 8 || count === 9) {         
+          if(count === 8 || count === 9 || count === 10) {         
             offset = 60;
           }
+          
           
 					let seconds = parseInt(time.slice(-2)) - offset;
 					let minutes = parseInt(time.substr(0, time.indexOf(':')));
