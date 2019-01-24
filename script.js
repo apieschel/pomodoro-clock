@@ -7,7 +7,6 @@ let beep = document.getElementById("beep");
 let isBreak = false;
 let paused = true;
 let count = 0;
-
 clock.innerText = sessionTime.innerText + ":00";
 
 if(paused === true) {
@@ -53,14 +52,14 @@ function countDown() {
   let x = setInterval(function () {
     // Get todays date and time
     let now = new Date().getTime();
-    // Find the distance between now and the count down date
+    // Find the distance between now and the countDownDate
     let distance = countDownDate - now;
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
     formatTime(countDownDate, minutes, seconds);
     
-    // Set to 500 to preempt the testing suite, which hacks the setInterval function to make it run every 30ms, but the clock is still only updating every 1000ms. 
+    // Set to 500 to preempt the FCC testing suite, which hacks the setInterval function to make it run every 30ms, but the clock is still only updating every 1000ms. 
     if(distance < 500) {  
       switchSession();
       console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText);    
@@ -68,16 +67,13 @@ function countDown() {
       countDown();
     }
   }, 1000);
-
+  
+  // Event Listeners
   document.getElementById("pause").addEventListener("click", function() {
     if(paused){ 
-      let time = document.getElementById("time-left").innerText; 
-      unPause(countDownDate, time);
-      
+      unPause(countDownDate);
       x = setInterval(function () {
-        // Get todays date and time
         let now = new Date().getTime();
-        // Find the distance between now and the count down date
         let distance = countDownDate - now;
         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.round((distance % (1000 * 60)) / 1000);
@@ -99,13 +95,9 @@ function countDown() {
 
   document.getElementById("start_stop").addEventListener("click", function() {
     if(paused){ 
-      let time = document.getElementById("time-left").innerText; 
-      unPause(countDownDate, time);
-      
+      unPause(countDownDate);     
       x = setInterval(function () {	
-        // Get todays date and time
         let now = new Date().getTime();
-        // Find the distance between now and the count down date
         let distance = countDownDate - now;
         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.round((distance % (1000 * 60)) / 1000);
@@ -126,19 +118,10 @@ function countDown() {
   });
 
   document.getElementById("reset").addEventListener("click", function() {
-    console.log("reset");
-    paused = true;
-    isBreak = false;
-    beep.pause();
-    beep.currentTime = 0;
-    document.getElementById("timer-label").innerText = "Session";
-    sessionTime.innerHTML = "25";
-    breakTime.innerHTML = "5";
-    document.getElementById("time-left").innerHTML = "25:00";
+    resetTimer();
     clearInterval(x);
   });
-
-}
+} // end countDown() function
 
 function increment() {
   if(paused) {
@@ -240,7 +223,10 @@ function switchSession() {
   }
 }
 
-function unPause(countDownDate, time) {
+function unPause(countDownDate, x) {
+  if(paused){ 
+      
+  let time = document.getElementById("time-left").innerText; 
   if(time.length > 2) {
         let seconds = parseInt(time.slice(-2));
         let minutes = parseInt(time.substr(0, time.indexOf(':')));
@@ -250,4 +236,35 @@ function unPause(countDownDate, time) {
         countDownDate = new Date().getTime() + minutes*60000;
       }
       paused=false; 
+    
+      x = setInterval(function () {
+        let now = new Date().getTime();
+        let distance = countDownDate - now;
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.round((distance % (1000 * 60)) / 1000);
+
+        formatTime(countDownDate, minutes, seconds);
+
+        if(distance < 500) {
+          switchSession();
+          console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText);    
+          clearInterval(x);
+          countDown();
+        }
+      }, 1000); 
+    } else { 
+      paused=true; 
+      clearInterval(x);
+    } 
+}
+
+function resetTimer() {
+    paused = true;
+    isBreak = false;
+    beep.pause();
+    beep.currentTime = 0;
+    document.getElementById("timer-label").innerText = "Session";
+    sessionTime.innerHTML = "25";
+    breakTime.innerHTML = "5";
+    document.getElementById("time-left").innerHTML = "25:00";
 }
