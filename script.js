@@ -190,8 +190,10 @@ let sessionTime = document.getElementById("session-length");
 
 				if(time.length > 2) {
           let offset = 0;
-         
-            offset = 61;
+          
+          if(document.getElementById("timer-label").innerText === "Session") {         
+            offset = 60;
+          }
           
 					let seconds = parseInt(time.slice(-2)) - offset;
 					let minutes = parseInt(time.substr(0, time.indexOf(':')));
@@ -240,12 +242,10 @@ let sessionTime = document.getElementById("session-length");
 			// If the count down is finished, write some text
       //console.log(distance);
           
-			if (distance < 0) {
+			if (distance <= 0) {
+        
         console.log(distance);
-				clearInterval(x);
-				document.getElementById("time-left").innerHTML = "00:00";
-
-				if(isBreak) {
+        if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
           beep.play();
 					isBreak = false;      
@@ -256,6 +256,9 @@ let sessionTime = document.getElementById("session-length");
 					isBreak = true;
 			    document.getElementById("timer-label").innerText = "Break";
 				}
+				
+				document.getElementById("time-left").innerHTML = "00:00";
+        clearInterval(x);
 				countDown();
 			}
 					
