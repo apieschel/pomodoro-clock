@@ -65,7 +65,7 @@ function countDown() {
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
-    tick();
+    formatTime(countDownDate, minutes, seconds);
     
     // Set to 500 to preempt the testing suite, which hacks the setInterval function to make it run every 30ms, but the clock is still only updating every 1000ms. 
     if(distance < 500) {
@@ -119,22 +119,7 @@ function countDown() {
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
-    if(seconds === 60) {
-      seconds = 0;
-      minutes = minutes + 1;
-    }
-
-    if(seconds < 10) {
-      seconds = "0" + seconds.toString();
-    }
-
-    if(minutes < 10) {
-      minutes = "0" + minutes.toString();
-    }
-
-    // Display the result in the element with id="time-left"
-    document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
-    document.title = "Pomodoro: " + minutes + ":" + seconds;
+    formatTime(countDownDate, minutes, seconds);
 
     if(distance < 500) {
       document.getElementById("time-left").innerHTML = "00:00";
@@ -188,63 +173,41 @@ function countDown() {
       }
 
       paused=false; 
-      x = setInterval(function () {
-      //console.log(isBreak);		
+      x = setInterval(function () {	
 
-    // Get todays date and time
-    let now = new Date().getTime();
+        // Get todays date and time
+        let now = new Date().getTime();
+        // Find the distance between now and the count down date
+        let distance = countDownDate - now;
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
-    // Find the distance between now and the count down date
-    let distance = countDownDate - now;
-    //console.log(1500000 - distance);
+        formatTime(countDownDate, minutes, seconds);
 
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.round((distance % (1000 * 60)) / 1000);
+        // If the count down is finished, write some text
+        console.log(distance);
+        console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText)
 
-    if(seconds === 60) {
-      seconds = 0;
-      minutes = minutes + 1;
-    }
+        if(distance < 500) {
+          document.getElementById("time-left").innerHTML = "00:00";
+          beep.currentTime = 0;
 
-    if(seconds < 10) {
-      seconds = "0" + seconds.toString();
-    }
+          if(isBreak) {
+            //alert("Break's over! Let's get back to work.");
+            beep.play();
+            isBreak = false;      
+            document.getElementById("timer-label").innerText = "Session";
+          } else {
+            //alert("Don't push yourself too hard! Time for a break.");
+            beep.play();
+            isBreak = true;
+            document.getElementById("timer-label").innerText = "Break";
+          }
 
-    if(minutes < 10) {
-      minutes = "0" + minutes.toString();
-    }
-
-    // Display the result in the element with id="time-left"
-    document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
-    document.title = "Pomodoro: " + minutes + ":" + seconds;
-
-    // If the count down is finished, write some text
-    console.log(distance);
-    console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText)
-
-    if(distance < 500) {
-      document.getElementById("time-left").innerHTML = "00:00";
-      beep.currentTime = 0;
-
-      if(isBreak) {
-        //alert("Break's over! Let's get back to work.");
-        beep.play();
-        isBreak = false;      
-        document.getElementById("timer-label").innerText = "Session";
-      } else {
-        //alert("Don't push yourself too hard! Time for a break.");
-        beep.play();
-        isBreak = true;
-        document.getElementById("timer-label").innerText = "Break";
-      }
-
-      console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText);    
-      clearInterval(x);
-      countDown();
-    }
-
-
-
+          console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText);    
+          clearInterval(x);
+          countDown();
+        }
       }, 1000); 
     } else { 
       paused=true; 
@@ -331,18 +294,7 @@ function decrementBreak() {
   }
 }
 
-function tick(countDownDate) {
-  console.log(isBreak);	
-  // Get todays date and time
-  let now = new Date().getTime();
-
-  // Find the distance between now and the count down date
-  let distance = countDownDate - now;
-  //console.log(1500000 - distance);
-
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.round((distance % (1000 * 60)) / 1000);
-
+function formatTime(countDownDate, minutes, seconds) {
   if(seconds === 60) {
     seconds = 0;
     minutes = minutes + 1;
