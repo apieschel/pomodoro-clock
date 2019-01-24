@@ -87,22 +87,23 @@ let sessionTime = document.getElementById("session-length");
 			document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
 			document.title = "Pomodoro: " + minutes + ":" + seconds;
 
-			// If the count down is finished, write some text
-			if (distance < 0) {
-				clearInterval(x);
+			if(distance < 500) {
 				document.getElementById("time-left").innerHTML = "00:00";
-
-				if(isBreak) {
+        
+        if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
           beep.play();
 					isBreak = false;      
-		    	document.getElementById("timer-label").innerText = "Session";
+			    document.getElementById("timer-label").innerText = "Session";
 				} else {
 					//alert("Don't push yourself too hard! Time for a break.");
           beep.play();
 					isBreak = true;
 			    document.getElementById("timer-label").innerText = "Break";
 				}
+				
+        console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText);    
+        clearInterval(x);
 				countDown();
 			}
 			
@@ -158,15 +159,13 @@ let sessionTime = document.getElementById("session-length");
 			document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
 			document.title = "Pomodoro: " + minutes + ":" + seconds;
 
-			// If the count down is finished, write some text
-			if (distance < 0) {
-				clearInterval(x);
+			if(distance < 500) {
 				document.getElementById("time-left").innerHTML = "00:00";
-
-				if(isBreak) {
+        
+        if(isBreak) {
 					//alert("Break's over! Let's get back to work.");
           beep.play();
-					isBreak = false;
+					isBreak = false;      
 			    document.getElementById("timer-label").innerText = "Session";
 				} else {
 					//alert("Don't push yourself too hard! Time for a break.");
@@ -174,6 +173,9 @@ let sessionTime = document.getElementById("session-length");
 					isBreak = true;
 			    document.getElementById("timer-label").innerText = "Break";
 				}
+				
+        console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText);    
+        clearInterval(x);
 				countDown();
 			}
 					
