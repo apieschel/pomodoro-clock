@@ -70,11 +70,6 @@ function countDown() {
       minutes = minutes + 1;
     }
 
-    if(seconds < 58 && seconds > 53) {
-      beep.pause();
-      beep.currentTime = 0;
-    }
-
     if(seconds < 10) {
       seconds = "0" + seconds.toString();
     }
@@ -89,7 +84,8 @@ function countDown() {
 
     if(distance < 500) {
       document.getElementById("time-left").innerHTML = "00:00";
-
+      beep.currentTime = 0;
+      
       if(isBreak) {
         //alert("Break's over! Let's get back to work.");
         beep.play();
@@ -142,11 +138,6 @@ function countDown() {
       minutes = minutes + 1;
     }
 
-    if(seconds < 58 && seconds > 53) {
-      beep.pause();
-      beep.currentTime = 0;
-    }
-
     if(seconds < 10) {
       seconds = "0" + seconds.toString();
     }
@@ -161,6 +152,7 @@ function countDown() {
 
     if(distance < 500) {
       document.getElementById("time-left").innerHTML = "00:00";
+      beep.currentTime = 0;
 
       if(isBreak) {
         //alert("Break's over! Let's get back to work.");
@@ -228,11 +220,6 @@ function countDown() {
       minutes = minutes + 1;
     }
 
-    if(seconds < 58 && seconds > 53) {
-      beep.pause();
-      beep.currentTime = 0;
-    }
-
     if(seconds < 10) {
       seconds = "0" + seconds.toString();
     }
@@ -251,6 +238,7 @@ function countDown() {
 
     if(distance < 500) {
       document.getElementById("time-left").innerHTML = "00:00";
+      beep.currentTime = 0;
 
       if(isBreak) {
         //alert("Break's over! Let's get back to work.");
@@ -354,57 +342,5 @@ function decrementBreak() {
       val = val - 1;
     } 
     breakTime.innerHTML = val;
-  }
-}
-
-function intervalCount(countDownDate) {
-
-  let now = new Date().getTime();
-
-  let distance = countDownDate - now;
-  //console.log(1500000 - distance);
-
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.round((distance % (1000 * 60)) / 1000);
-
-  if(seconds === 60) {
-    seconds = 0;
-    minutes = minutes + 1;
-  }
-
-  if(seconds < 58 && seconds > 53) {
-      beep.pause();
-      beep.currentTime = 0;
-  }
-
-  if(seconds < 10) {
-    seconds = "0" + seconds.toString();
-  }
-
-  if(minutes < 10) {
-    minutes = "0" + minutes.toString();
-  }
-
-  // Display the result
-  document.getElementById("time-left").innerHTML = minutes + ":" + seconds;
-  document.title = "Pomodoro: " + minutes + ":" + seconds;
-
-  // If the count down is finished, clear the interval, then alert and switch between break / session
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("time-left").innerHTML = "00:00";
-
-    if(isBreak) {
-      //alert("Break's over! Let's get back to work.");
-      beep.play();
-      isBreak = false;
-      document.getElementById("timer-label").innerText = "Session";
-    } else {
-      //alert("Don't push yourself too hard! Time for a break.");
-      beep.play();
-      isBreak = true;
-      document.getElementById("timer-label").innerText = "Break";
-    }
-    countDown();
   }
 }
