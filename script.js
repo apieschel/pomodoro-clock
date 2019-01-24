@@ -24,7 +24,6 @@ document.getElementById("break-increment").addEventListener("click", incrementBr
 document.getElementById("break-decrement").addEventListener("click", decrementBreak);
 
 function countDown() {
-
   // Clear the event listeners by cloning elements to avoid bugs
   let old_element = document.getElementById("pause");
   let new_element = old_element.cloneNode(true);
@@ -52,15 +51,10 @@ function countDown() {
 
   // Update the count down every 1 second
   let x = setInterval(function () {
-
-    console.log(isBreak);	
     // Get todays date and time
     let now = new Date().getTime();
-
     // Find the distance between now and the count down date
     let distance = countDownDate - now;
-    //console.log(1500000 - distance);
-
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
@@ -76,29 +70,15 @@ function countDown() {
   }, 1000);
 
   document.getElementById("pause").addEventListener("click", function() {
-    console.log("pause");
     if(paused){ 
       let time = document.getElementById("time-left").innerText; 
-
-      if(time.length > 2) {
-        let seconds = parseInt(time.slice(-2));
-        let minutes = parseInt(time.substr(0, time.indexOf(':')));
-        countDownDate = new Date().getTime() + minutes*60000 + seconds*1000;
-      } else {
-        let minutes = parseInt(time);
-        countDownDate = new Date().getTime() + minutes*60000;
-      }
-
-      paused=false; 
+      unPause(countDownDate, time);
+      
       x = setInterval(function () {
-        console.log(isBreak);				
         // Get todays date and time
         let now = new Date().getTime();
-
         // Find the distance between now and the count down date
         let distance = countDownDate - now;
-        //console.log(1500000 - distance);
-
         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
@@ -118,24 +98,11 @@ function countDown() {
   });
 
   document.getElementById("start_stop").addEventListener("click", function() {
-    count = count + 1;
-    console.log("start_stop");
-
     if(paused){ 
       let time = document.getElementById("time-left").innerText; 
-
-      if(time.length > 2) {
-        let seconds = parseInt(time.slice(-2));
-        let minutes = parseInt(time.substr(0, time.indexOf(':')));
-        countDownDate = new Date().getTime() + minutes*60000 + seconds*1000;
-      } else {
-        let minutes = parseInt(time);
-        countDownDate = new Date().getTime() + minutes*60000;
-      }
-
-      paused=false; 
+      unPause(countDownDate, time);
+      
       x = setInterval(function () {	
-
         // Get todays date and time
         let now = new Date().getTime();
         // Find the distance between now and the count down date
@@ -144,10 +111,6 @@ function countDown() {
         let seconds = Math.round((distance % (1000 * 60)) / 1000);
 
         formatTime(countDownDate, minutes, seconds);
-
-        // If the count down is finished, write some text
-        console.log(distance);
-        console.log(minutes + ":" + seconds + " " + document.getElementById("timer-label").innerText)
 
         if(distance < 500) {
           switchSession();
@@ -275,4 +238,16 @@ function switchSession() {
     isBreak = true;
     document.getElementById("timer-label").innerText = "Break";
   }
+}
+
+function unPause(countDownDate, time) {
+  if(time.length > 2) {
+        let seconds = parseInt(time.slice(-2));
+        let minutes = parseInt(time.substr(0, time.indexOf(':')));
+        countDownDate = new Date().getTime() + minutes*60000 + seconds*1000;
+      } else {
+        let minutes = parseInt(time);
+        countDownDate = new Date().getTime() + minutes*60000;
+      }
+      paused=false; 
 }
