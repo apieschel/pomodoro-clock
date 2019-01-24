@@ -65,6 +65,10 @@ let sessionTime = document.getElementById("session-length");
 				seconds = 0;
 				minutes = minutes + 1;
 			}
+      
+      if(seconds < 58 && seconds > 53) {
+        beep.currentTime = 0;
+      }
 
 			if(seconds < 10) {
 				seconds = "0" + seconds.toString();
@@ -131,6 +135,10 @@ let sessionTime = document.getElementById("session-length");
 				seconds = 0;
 				minutes = minutes + 1;
 			}
+          
+      if(seconds < 58 && seconds > 53) {
+        beep.currentTime = 0;
+      }
 
 			if(seconds < 10) {
 				seconds = "0" + seconds.toString();
@@ -202,6 +210,10 @@ let sessionTime = document.getElementById("session-length");
 				seconds = 0;
 				minutes = minutes + 1;
 			}
+          
+      if(seconds < 58 && seconds > 53) {
+        beep.currentTime = 0;
+      }
 
 			if(seconds < 10) {
 				seconds = "0" + seconds.toString();
@@ -243,6 +255,7 @@ let sessionTime = document.getElementById("session-length");
     
     reset.addEventListener("click", function() {
       paused = true;
+      isBreak = false;
       clearInterval(x);
       document.getElementById("time-left").innerHTML = "00:00";
       beep.pause();
@@ -333,6 +346,10 @@ let sessionTime = document.getElementById("session-length");
 			seconds = 0;
 			minutes = minutes + 1;
 		}
+    
+    if(seconds < 58 && seconds > 53) {
+        beep.currentTime = 0;
+    }
 
 		if(seconds < 10) {
 			seconds = "0" + seconds.toString();
