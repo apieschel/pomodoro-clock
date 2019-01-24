@@ -188,13 +188,6 @@ let sessionTime = document.getElementById("session-length");
       count = count + 1;
       console.log("start_stop");
       console.log(count);
-      
-      if(isBreak) { 
-			    document.getElementById("timer-label").innerText = "Break";
-				} else {
-			    document.getElementById("timer-label").innerText = "Session";
-				}
-      
 			if(paused){ 
 				let time = document.getElementById("time-left").innerText; 
 
@@ -256,7 +249,6 @@ let sessionTime = document.getElementById("session-length");
 			if (distance <= 0) {
         
         console.log(distance);
-        
 				document.getElementById("time-left").innerHTML = "00:00";
         
         if(isBreak) {
