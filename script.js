@@ -181,7 +181,7 @@ let sessionTime = document.getElementById("session-length");
 		});
     
     document.getElementById("start_stop").addEventListener("click", function() {
-
+      console.log(isBreak);
 			if(paused){ 
 				let time = document.getElementById("time-left").innerText; 
 
