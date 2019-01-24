@@ -67,6 +67,7 @@ let sessionTime = document.getElementById("session-length");
 			}
       
       if(seconds < 58 && seconds > 53) {
+        beep.pause();
         beep.currentTime = 0;
       }
 
@@ -137,6 +138,7 @@ let sessionTime = document.getElementById("session-length");
 			}
           
       if(seconds < 58 && seconds > 53) {
+        beep.pause();
         beep.currentTime = 0;
       }
 
@@ -212,6 +214,7 @@ let sessionTime = document.getElementById("session-length");
 			}
           
       if(seconds < 58 && seconds > 53) {
+        beep.pause();
         beep.currentTime = 0;
       }
 
@@ -348,6 +351,7 @@ let sessionTime = document.getElementById("session-length");
 		}
     
     if(seconds < 58 && seconds > 53) {
+        beep.pause();
         beep.currentTime = 0;
     }
 
